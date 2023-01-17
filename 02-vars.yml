@@ -50,7 +50,7 @@
    hosts: all
    connection: local
    tasks:
-     - name: run a shell command
+     - name: run a schell command
        ansible.builtin.debug: uptime
        register: out
      - name: print out
