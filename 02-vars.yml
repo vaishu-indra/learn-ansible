@@ -51,7 +51,7 @@
    connection: local
    tasks:
      - name: run a shell command
-       ansible.builtin.debug: uptime
+       ansible.builtin.shell: uptime
        register: out
      - name: print out
        ansible.builtin.debug:
