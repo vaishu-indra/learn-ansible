@@ -1,0 +1,60 @@
+- name: Declare variable at Play level
+  hosts: all
+  connection: local
+  vars:
+    URL: play.example.com
+  tasks:
+    - name: Access a variable
+      ansible.builtin.debug:
+        msg: URL == {{URL}}
+
+- name: Declare variable in anothe file
+  hosts: all
+  connection: local
+  vars_files:
+    - var.yml
+  tasks:
+    - name: Access variable
+      ansible.builtin.debug:
+        msg: URL == {{URL}}
+## vars_files can also be declared on task level.
+
+- name: Declare variable at Tasks level
+  hosts: all
+  connection: local
+  tasks:
+    - name: Declare and access a variable
+      ansible.builtin.debug:
+        msg: URL == {{URL}}
+      vars:
+        URL: task.example.com
+
+- name: Declare variable from inventory file
+  hosts: all
+  connection: local
+  tasks:
+    - name: Access variable
+      ansible.builtin.debug:
+        msg: URL == {{URL}}
+
+- name: Access a fact
+  hosts: all
+  connection: local
+  tasks:
+    - name: Access fact
+      ansible.builtin.debug:
+        msg: Anisble Host name == {{ansible_fqdn}}
+
+- name: Register a variable
+  hosts: all
+  connection: local
+  tasks:
+    - name: run a shell command
+      ansible.builtin.shell: uptime
+      register: out
+    - name: Print out
+      ansible.builtin.debug:
+        msg: "{{out.stdout}}"
+    - name: Set a fact
+      ansible.builtin.set_fact:
+        OUTPUT: "{{out.stdout}}"
