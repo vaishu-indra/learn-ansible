@@ -30,11 +30,11 @@
        vars:
          URL: task.example.com
 
- - name: declare variable at inventory file
+ - name: declare variable from inventory file
    hosts: all
    connection: local
    tasks:
-     - name: Access a variable
+     - name: Access variable
        ansible.builtin.debug:
          msg: URL == {{URL}}
 
