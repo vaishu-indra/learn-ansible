@@ -1,0 +1,18 @@
+- name: demo on condition
+  hosts: all
+  vars:
+    a: 100
+    b: false
+  tasks:
+    - name: string conditions
+      debug:
+        msg: Fruit name is apple
+      when: fruit_name == "apple"
+    - name: numerical conditions
+      debug:
+        msg: a is greater than 10
+      when: a > 10
+    - name: Boolean condition
+      debug:
+        msg: b is true
+      when: b
